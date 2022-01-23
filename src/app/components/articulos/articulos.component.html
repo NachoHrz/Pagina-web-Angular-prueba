@@ -1,0 +1,29 @@
+<div class="articulos" *ngIf="articulos.length==0">
+    <h2 class="subcabecera">Todavia no has iniciado el servicio de mongodb</h2>
+    <h3>Para iniciarlo ejecuta mongod.exe y mongo.exe</h3><br />
+    <h3>A continuación ejecuta cmd y ve al directorio de backend. En el ejecuta el comando npm start</h3>
+</div>
+
+<div class="articulos" *ngIf="articulos">
+    <!--ngFor crea un objeto articulo por cada objeto en articulos-->
+    <article class="articulo-item" *ngFor="let articulo of articulos">
+        <h2>{{articulo.title}}</h2>
+        <div class="image-wrap">
+            <!--La url de la imagen es la url de la funcion getArticulos del servicio articulo
+            + el metodo definido en el controlador del backend para extraer la id de la imagen
+            + el nombre de la imagen. Todo esto junto completa la url para sacar la imagen-->
+            <img src="{{url+'get-image/'+articulo.image}}" alt="{{articulo.title}}" *ngIf="articulo.image" />
+            <img src="assets/images/defecto.png" alt="{{articulo.title}}" *ngIf="!articulo.image" />
+            <!--ngIf para mostrar la imagen de la url si la hay, y en caso de que no la haya
+                mostrar una por defecto-->
+        </div>
+
+        <!-- El acceso a las propiedades del array obtenido por la url (ajax) es muy facil -->
+        <span class="date">
+            {{articulo.date | amLocale:'es' | amTimeAgo}}
+        </span>
+        <a [routerLink]="['/Blog/articulo', articulo._id ]">Saber mas</a>
+        <hr />
+        <div class="clearfix"></div>
+    </article>
+</div>

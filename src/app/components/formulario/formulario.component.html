@@ -1,0 +1,112 @@
+<!--Recogiendo propiedades del padre a hijo mediante input-->
+<app-slider [nombre]="'Formulario'" [size]="'small'">
+    <!--la variable hometext esta definida en app.component.ts-->
+</app-slider>
+
+<div class="center">
+    <section id="contenido">
+
+
+        <!-- REPASO EVENTOS -->
+
+        <h2 class="subcabecera">Eventos</h2>
+
+        <!--Evento click-->
+        <h3>Click</h3>
+        <button (click)="EventoClick()">Click</button>
+
+        <!--Evento DataBinding. coge el valor de un campo de formulario y lo usa de manera reactiva-->
+        <h3>Databinding</h3>
+        <input type="text" [(ngModel)]="campo" />
+        {{campo}}
+
+
+
+        <!--Evento click para aplicar el servicio contadorPalabras a un texto input-->
+        <h3>Contador de palabras</h3>
+        <textarea [(ngModel)]="texto" type="form"></textarea><br>
+        <button (click)="ContarTexto()">contar</button>
+        <div *ngIf="diccionario">
+            <!--Para usar un array del tipo key value en un loop ngForm hay que usar el pipe keyvalue-->
+            <ul *ngFor="let palabra of diccionario | keyvalue">
+                <!--keyvalue saca el valor contenido en la key y en el value para poder usarlos en la vista-->
+                <li><b>{{palabra.key}}</b> se repite: <b>{{palabra.value}}</b> vez</li>
+            </ul>
+        </div>
+
+
+        <!--Evento blur. Se activa cuando abandonas el campo en el que se ejecuta-->
+        <h3>Blur</h3>
+        <input type="text" (blur)="EventoBlur()" />
+        {{campo}}
+
+        <!-- Evento KeyUp. Se activa al pulsar una tecla-->
+        <h3>KeyUp</h3>
+        <input type="text" (keyup)="EventoKeyup()" />
+
+        <h1 class="subcabecera">formulario</h1>
+        <!--ngSubmit ejecuta la funcion cuando se enva el formulario-->
+        <form class="formulariocompleto" #usuarioForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <!--# crea una variable vinculada a este input, del tipo ngForm que es formulario angular (reactivo)-->
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" #nombre="ngModel" [(ngModel)]="usuario.nombre" required required
+                    pattern="[a-zA-Z]+" />
+                <!--se le puede añadir un patron que tiene que seguir para pasar la validacion-->
+
+                <!--si el nombre no es valido y ha sido tocado-->
+                <small *ngIf="!nombre.valid && nombre.touched">Nombre no valido</small>
+
+            </div>
+            <!--En el input se saca #nombre como valor de ngModel que es una variable del template formulario angular
+                    , luego [(ngModel)]="user.nombre" cambia el valor de la variable nombre definida en el ts a la del formulario-->
+
+            <div class="form-group">
+                <label for="apellidos">Apellidos</label>
+                <input type="text" name="apellidos" #apellidos="ngModel" [(ngModel)]="usuario.apellidos" required
+                    required pattern="[a-zA-Z]+" />
+                <small *ngIf="!apellidos.valid && apellidos.touched">Apellidos no valido</small>
+            </div>
+
+            <div class="form-group">
+                <label for="biografia">Biografia</label>
+                <textarea name="biografia" #biografia="ngModel" [(ngModel)]="usuario.biografia" required required
+                    pattern="[a-zA-Z]+"></textarea>
+
+                <small *ngIf="!biografia.valid && biografia.touched">Biografia no valido</small>
+
+            </div>
+            <div class="form-group radiobuttons">
+                <input type="radio" name="genero" value="hombre" #genero="ngModel" [(ngModel)]="usuario.genero"
+                    required />Hombre
+                <input type="radio" name="genero" value="mujer" #genero="ngModel" [(ngModel)]="usuario.genero" />Mujer
+                <input type="radio" name="genero" value="otro" #genero="ngModel" [(ngModel)]="usuario.genero" />Otro
+
+                <small *ngIf="!nombre.valid && nombre.touched">Nombre no valido</small>
+            </div>
+            <div class="clearfix"></div>
+            <!--disabled desabilita el boton cuando algun parametro del formulario
+                                                                        no se rellene correctamente-->
+            <input type="submit" value="Enviar" class="btn btn-success" [disabled]="usuarioForm.invalid" />
+        </form>
+    </section>
+    <section id="datos" *ngIf="usuario.genero">
+        <ul>
+            <li>
+                <h2>{{usuario.nombre}}</h2>
+            </li>
+            <li>
+                <h2>{{usuario.apellidos}}</h2>
+            </li>
+            <li>
+                <h2>{{usuario.biografia}}</h2>
+            </li>
+            <li>
+                <h2>{{usuario.genero}}</h2>
+            </li>
+        </ul>
+    </section>
+
+
+
+</div>

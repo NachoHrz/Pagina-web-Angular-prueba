@@ -1,0 +1,66 @@
+<!--Recogiendo propiedades del padre a hijo mediante input-->
+<app-slider [nombre]="'Juegos'" [size]="'small'">
+    <!--la variable hometext esta definida en app.component.ts-->
+</app-slider>
+
+<div class="center">
+    <section id="contenido">
+
+
+        <div id="favorita" *ngIf="Favorita">
+            <h2 class="subcabecera">
+                Juego favorito
+            </h2>
+            <h4>
+                {{Favorita.titulo}}
+            </h4>
+            <h5>
+                {{fecha | date:'dd/MM/yyyy'}}
+                {{Favorita.year | espar}}
+            </h5>
+        </div>
+
+
+        <!--
+        <h1 class="subcabecera">Juegos</h1>
+        <h2>{{titulo}}</h2>
+
+        <button (click)="cambiarTitulo()">Cambiar titulo</button>
+
+        <hr />
+
+        <h2>Juegos: </h2>
+        {{juegos[0].titulo}}
+
+        <hr />
+
+        <h2>Numero de juegos</h2>
+        {{juegos.length}}
+
+        <hr />
+
+        <div *ngIf="juegos.length<=3">
+            menos de 4 juegos
+        </div>
+        <div *ngIf="juegos.length>3">
+            muchos juegos!
+        </div>
+
+        <hr />
+    -->
+        <h2 class="subcabecera">Listado de juegos</h2>
+        <div id="articulos" *ngIf="juegos">
+            <div *ngFor="let juego of juegos; let i=index">
+                <!--el bucle ngFor genera una variable cada vez que iteratua, la cual es [juego]
+                esta va a almacenar las propiedades del array juego definidas en el ts -->
+                <app-juego 
+                [juego]="juego"
+                (MarcarFavorita)="mostrarFavorita($event)"
+                ></app-juego>
+                <!--Aqui hacemos que el output recogido por MarcaFavorita pase al evento de la funcion
+                mostrarFavorita definida en el ts-->
+            </div>
+
+        </div>
+    </section>
+</div>

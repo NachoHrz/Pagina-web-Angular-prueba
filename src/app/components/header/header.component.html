@@ -1,0 +1,40 @@
+<header id="cabecera">
+    <div class="center">
+        <!--LOGO web-->
+        <div id="logo">
+            <img src="assets/images/angularlogo.png" class="app-logo" alt="logotipo" [routerLink]="['/Inicio']" [ngStyle]="{cursor: 'pointer'}" />
+            <!--La marca del sitio-->
+            <span id="brand">Web <strong>Importante</strong></span>
+        </div>
+
+
+
+        <!--MENU web. nav representa link a enlaces de navegacion-->
+        <nav id="menu">
+            <ul>
+                <li>                                <!--routerLinkActive aplica el css .active{} cuando estemos en la direccion vinculada a este boton-->
+                    <a [routerLink] = "['/Inicio']" [routerLinkActive]="['active']">Inicio</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/Blog']" [routerLinkActive]="['active']">Blog</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/Formulario']" [routerLinkActive]="['active']">Formulario</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/Articulos']" [routerLinkActive]="['active']">Artículos</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/Faq']" [routerLinkActive]="['active']">FAQ</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/juegos']" [routerLinkActive]="['active']">Juegos</a>
+                </li>
+            </ul>
+        </nav>
+        <!--vamos a limpiar los flotados aqui del css para que no estorben en caso de ocupar mucho espacio despues-->
+        <div class="clearfix"></div>
+
+    </div>
+
+</header>

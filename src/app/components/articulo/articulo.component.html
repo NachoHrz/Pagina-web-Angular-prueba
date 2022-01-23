@@ -1,0 +1,16 @@
+
+<!--Recogiendo propiedades del padre a hijo mediante input-->
+<app-slider [nombre]="'Articulos'"
+[size]="'small'">
+    <!--la variable hometext esta definida en app.component.ts-->
+</app-slider>
+
+    <section id="contenido" class="blog">
+        <h1 class="subcabecera">Articulos</h1>
+
+        <app-articulos
+            [articulos]="articulos"
+        >
+        </app-articulos>
+        <!--Añadir articulos de script-->
+    </section>

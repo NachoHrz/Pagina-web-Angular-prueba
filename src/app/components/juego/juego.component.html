@@ -1,0 +1,29 @@
+
+            <article class="articulo-detail">
+                <h2>{{juego.titulo}}</h2>
+                <div class="imagen-wrap">
+                    <img src={{juego.image}} alt={{juego.titulo}}/>
+                </div>
+        
+                <!--<span class="year" [style.background]="juego.year>2018 ? 'green' : 'red'">año: {{juego.year}}</span>-->
+                <span class="year" [ngClass]="{
+                    'year-green' : juego.year>2018,
+                    'year-red' : juego.year<=2018
+                }"
+                >
+                {{juego.year}}
+                </span>
+                <br />
+                <span class="date">
+                    hace 5 minutos
+                </span>
+                <br />
+                <a href="#"> Saber mas</a>
+                <br/>
+                                <!--Al darle a seleccionar se recibira desde el boton el evento y el juego asignado a este-->
+                <button (click)="seleccionar($event, juego)">
+                    Seleccionar favorita
+                </button>
+        
+                <div class="clearfix"></div>
+            </article>

@@ -1,0 +1,27 @@
+<!--Recogiendo propiedades del padre a hijo mediante input-->
+<app-slider [nombre]="'Este es el blog'" [size]="'small'">
+    <!--la variable hometext esta definida en app.component.ts-->
+</app-slider>
+
+<div class="center">
+    <section id="contenido">
+        <!--Añadir articulos de script-->
+        <div class="blog">
+            <h1>Grooverg. Más y mejor.</h1>
+            <img src="assets/images/empresa.webp" alt="empresarios como un engranaje" />
+            <p>{{text}}
+            </p>
+            <br />
+            <!--Para usar un array del tipo key value en un loop ngForm hay que usar el pipe keyvalue-->
+            <ul *ngFor="let palabra of diccionario | keyvalue">
+                <!--keyvalue saca el valor contenido en la key y en el value para poder usarlos en la vista-->
+                <li><b>{{palabra.key}}</b> se repite: <b>{{palabra.value}}</b> vez</li>
+            </ul>
+        </div>
+    </section>
+    <app-siderbar></app-siderbar>
+</div>
+
+
+<!-- este dif limpia los flotados(el margen dejado por los objetos)-->
+<div class="clearfix"></div>
